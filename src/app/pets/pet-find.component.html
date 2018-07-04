@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="row">
+    <form class="form-inline"  (ngSubmit)="findPet()">
+      <input class="form-control" type="text" [(ngModel)]= "searchId"  [ngModelOptions]="{standalone: true}" style="width:350px"  placeholder="Enter a number to search pet by Id">
+      <button class="btn btn-primary" type="submit">
+        Search for Pet
+      </button>
+    </form>
+  </div>
+  <br>
+  <p *ngIf='!pet && searched'>
+  Pet not found, please provide a valid Id.
+  </p>
+  <div class='card' *ngIf='pet'>
+      <div class='card-header' style='font-size:large'>
+          {{pet.name}}
+      </div>
+      <div class='card-block'>
+          <div class='row'>
+              <div class='col-md-6'>
+                  <div class='row'>
+                      <div class='col-md-3 heading'>Pet Name:</div>
+                      <div class='col-md-6'>{{pet.name}}</div>
+                  </div>
+                  <div class='row'>
+                      <div class='col-md-3 heading'>Pet Category:</div>
+                      <div class='col-md-6'>{{pet.category.name}}</div>
+                  </div>
+                  <div class='row'>
+                      <div class='col-md-3 heading'>Tags:</div>
+                      <div class='col-md-6'>
+                        <ul class="tags">
+                          <li *ngFor="let tag of pet.tags">{{tag.name}}</li>
+                        </ul>
+                      </div>
+                  </div>
+                  <div class='row'>
+                      <div class='col-md-3 heading'>Availability:</div>
+                      <div class='col-md-6'>{{pet.status}}</div>
+                  </div>
+              </div>
+              <div class='row'>
+                  <img class='picture' *ngFor="let photo of pet.photoUrls"
+                       [style.width.px]='300'
+                       [style.margin.px]='3'
+                       [src]='photo'>
+
+          </div>
+      </div>
+  </div>
+  <!-- Table
+  <table class="table" *ngIf='pet'>
+    <thead>
+      <tr>
+        <th>Pet Name</th>
+        <th>Pet Category</th>
+        <th>Pet Availability</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{pet.name}}</td>
+        <td>{{pet.category.name}}</td>
+        <td>{{pet.status}}</td>
+        <td><a class="btn btn-primary" [routerLink]="['/PetDetail', pet.id]"><b>Pet Details</b></a></td>
+      </tr>
+    </tbody>
+  </table>
+-->
+
+</div>

@@ -1,0 +1,30 @@
+<div class="">
+  {{pageTitle}}
+</div>
+
+<div class="row">
+
+<div class="col-md-3" *ngFor='let pet of pets'>
+<div class="card bottomSpace" >
+  <div class="card-header">
+    <h3 class="card-title text-center">{{pet.name}}</h3>
+  </div>
+  <div class="card-block">
+    <img class="img-fluid center" [src]="pet.photoUrls[0]"
+    [style.width.px]="imageWidth"
+    [style.height.px]="imageHeight"
+    [style.margin.px]='imageMargin'>
+    <br>
+    <p class="text-center"><b>Pet Availability:</b> {{pet.status}}</p>
+    <!--
+    <p *ngFor="let tag of pet.tags">
+      {{tag.name}}
+    </p>
+  -->
+    <p class="text-center">
+    <a class="btn btn-primary" [routerLink]="['/PetDetail', pet.id]"><b>Pet Details</b></a>
+  </p>
+  </div>
+</div>
+</div>
+</div>

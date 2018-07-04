@@ -1,0 +1,25 @@
+  <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+
+     <!-- Brand and toggle get grouped for better mobile display -->
+
+      <a class="navbar-brand">{{title}}</a>
+<div class="collapse navbar-collapse" id="navbarText">
+
+     <ul class="navbar-nav mr-auto">
+      <li class="nav-item"><a [routerLink]="['/PetList']" class="nav-link">Pet List</a></li>
+      <li class="nav-item"><a [routerLink]="['/PetAdd']" class="nav-link">Add Pet</a></li>
+      <li class="nav-item"><a [routerLink]="['/PetFind']" class="nav-link">Find Pets</a></li>
+    </ul>
+<!-- Right hand navigation -->
+    <ul class="navbar-nav ml-auto">
+     <li class="nav-item"><a class="nav-link" ><span class="fa fa-user"></span> Sign Up</a></li>
+     <li ng-show="!authenticated" class="nav-item"><a class="nav-link"><span class="fa fa-sign-in"></span> Login</a></li>
+     <li ng-show="authenticated" class="nav-item"><a  class="nav-link" ng-click="logout()"><span class="fa fa-sign-out"></span> Logout</a></li>
+  </ul>
+  </div>
+</nav>
+<div class="center">
+  <div class="spacing">
+    <router-outlet></router-outlet>
+  </div>
+</div>

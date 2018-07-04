@@ -1,0 +1,89 @@
+<div class="container">
+  <form class="form-horizontal" novalidate (ngSubmit)="savePet()" [formGroup]="petForm">
+    <div class="form-group row">
+      <label class="col-md-2 control-label" for="petNameId">Pet Name</label>
+      <div class="col-md-8">
+        <input class="form-control" id="petNameId" type="text" formControlName="name">
+      </div>
+      <span class='error' *ngIf="!petForm.controls.name.valid && submitted">Pet name is required.</span>
+<!--      <span *ngIf="displayMessage.name">{{displayMessage.name}}</span>
+-->
+    </div>
+    <div class="form-group row">
+      <label class="col-md-2 control-label" for="petCategoryId">Pet Category</label>
+      <div class="col-md-8">
+
+      <select id="petCategoryId" class="form-control" formControlName="category">
+        <option *ngFor="let c of categories" [ngValue]="c">
+          {{c.name}}
+        </option>
+      </select>
+    </div>
+    <span class='error' *ngIf="!petForm.controls.category.valid && submitted">Pet Category is required.</span>
+    </div>
+    <!-- Pet Status -->
+    <div class="form-group row">
+      <label class="col-md-2 control-label" for="petStatusId">Pet Status</label>
+      <div class="col-md-8">
+      <select id="petStatusId" class="form-control" formControlName="status">
+        <option value="AVAILABLE">Available</option>
+        <option value="PENDING">Pending</option>
+        <option value="SOLD">Sold</option>
+      </select>
+    </div>
+    <span class='error' *ngIf="!petForm.controls.status.valid && submitted">Pet Status is required.</span>
+    </div>
+    <!-- Pet Photos -->
+    <div formArrayName="photoUrls">
+      <div class="row">
+        <button class="col-md-2 btn btn-default"
+                              type="button"
+                              (click)="addPhoto()">Add Photo</button>
+      </div>
+      <div class="form-group" *ngFor="let photo of photoUrls.controls; let i = index">
+        <label class="col-md-2 control-label" [attr.for]="i">Photo</label>
+        <div class="col-md-8">
+          <input class="form-control" type="text" [id]="i" [formControlName]="i"/>
+        </div>
+        <span class="col-md-2" *ngIf="petForm.controls.photoUrls.controls.length > 1" (click)="removePhoto(i)">Remove Photo</span>
+        <span class='error' *ngIf="!petForm.controls.photoUrls.controls[i].valid && submitted">Photo is required and must end with proper file extension (jpg,jpeg, gif, png).</span>
+        <span class='error' ></span>
+        </div>
+    </div>
+    <!-- Pet Tags Form Array -->
+    <div formArrayName="tags">
+      <div class="row">
+        <button class="col-md-2 btn btn-default"
+                              type="button"
+                              (click)="addTag()">Add new Tag</button>
+      </div>
+      <div class="form-group" *ngFor="let tag of petForm.controls.tags.controls; let i=index">
+        <div [formGroupName]="i">
+          <label class="col-md-2 control-label" for="petTagId">Tag Name</label>
+          <div class="col-md-8">
+            <input class="form-control" id="petNameId" type="text" formControlName="name">
+          </div>
+          <span class="col-md-2" *ngIf="petForm.controls.tags.controls.length > 1" (click)="removeTag(i)">Remove Tag</span>
+          <span class='error' *ngIf="!petForm.controls.tags.controls[i].controls.name.valid && submitted">Tag is required.</span>
+        </div>
+      </div>
+    </div>
+    <!-- Save Button -->
+    <div class="form-group row">
+      <div class="col-md-2">
+      <button class="btn btn-primary" type="submit" [disabled]="!petForm.valid && submitted">
+              Save
+    </button>
+    </div>
+    <div class="">
+   <button class="btn btn-primary" [routerLink]="['/PetList']"  >
+                           Return to Pet List
+  </button>
+  </div>
+  </div>
+  </form>
+
+  <!--
+  <p>{{petForm.valid}}</p>
+-->
+</div>

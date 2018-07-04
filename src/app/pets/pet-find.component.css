@@ -1,0 +1,21 @@
+.heading{
+  font-weight: bold;
+}
+.tags{
+  list-style: none outside none;
+}
+.tags li{
+  list-style-type: none;
+  border-color: black;
+  border: 1px solid darkgrey;
+  padding: 5px;
+  margin: 2%;
+  display: inline-block;
+  float: left;
+  background-color: lightgrey;
+}
+.picture{
+  display: inline-block;
+  margin-left: 10px;
+  padding-left: 20px;
+}

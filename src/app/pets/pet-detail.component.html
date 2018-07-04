@@ -1,0 +1,44 @@
+
+<div class='card' *ngIf='pet'>
+    <div class='card-header' style='font-size:large'>
+        {{pet.name}}
+    </div>
+    <div class='card-block'>
+        <div class='row'>
+            <div class='col-md-6'>
+                <div class='row'>
+                    <div class='col-md-3 heading'>Pet Name:</div>
+                    <div class='col-md-6'>{{pet.name}}</div>
+                </div>
+                <div class='row'>
+                    <div class='col-md-3 heading'>Pet Category:</div>
+                    <div class='col-md-6'>{{pet.category.name}}</div>
+                </div>
+                <div class='row'>
+                    <div class='col-md-3 heading'>Tags:</div>
+                    <div class='col-md-6'>
+                      <ul class="tags">
+                        <li *ngFor="let tag of pet.tags">{{tag.name}}</li>
+                      </ul>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-md-3 heading'>Availability:</div>
+                    <div class='col-md-6'>{{pet.status}}</div>
+                </div>
+            </div>
+            <div class='row'>
+                <img class='' *ngFor="let photo of pet.photoUrls"
+                     [style.width.px]='300'
+                     [style.margin.px]='3'
+                     [src]='photo'>
+            </div>
+
+        </div>
+    </div>
+
+    <div class='card-footer'>
+        <a class='btn btn-primary' style="color:white" (click)='onBack()'>Back</a>
+        <pet-delete [id]='pet.id'></pet-delete>
+    </div>
+</div>
